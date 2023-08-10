@@ -1,5 +1,7 @@
 package hooks;
 
+import java.io.ByteArrayInputStream;
+
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
@@ -9,6 +11,7 @@ import factory.DriverFactory;
 import io.cucumber.java.AfterStep;
 import io.cucumber.java.BeforeAll;
 import io.cucumber.java.Scenario;
+import io.qameta.allure.Allure;
 import utilities.ConfigReader;
 import utilities.LoggerLoad;
 
@@ -39,6 +42,7 @@ public void afterstep(Scenario scenario) {
 		LoggerLoad.error("Steps Failed, Taking Screenshot");
 		final byte[] screenshot = ((TakesScreenshot)driver).getScreenshotAs(OutputType.BYTES);
 		scenario.attach(screenshot,"image/png","My screenshot");
+		Allure.addAttachment("MyScreenshot",new ByteArrayInputStream(((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES)));
 	}
 }
 }
