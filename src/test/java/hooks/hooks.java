@@ -7,7 +7,7 @@ import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 
 import factory.DriverFactory;
-
+import io.cucumber.java.AfterAll;
 import io.cucumber.java.AfterStep;
 import io.cucumber.java.BeforeAll;
 import io.cucumber.java.Scenario;
@@ -45,11 +45,11 @@ public void afterstep(Scenario scenario) {
 		Allure.addAttachment("MyScreenshot",new ByteArrayInputStream(((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES)));
 	}
 }
-}
-/*@AfterAll
+
+@AfterAll
 
 public static void after() {
 	LoggerLoad.info("Closing Driver");
 	driverfactory.closeallDriver();
 }
-}*/
+}
